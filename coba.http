@@ -1,0 +1,29 @@
+GET http://localhost:3000/movies
+
+###
+GET http://localhost:3000/movies/1
+
+###
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{
+    "title": "Kisah Kampung Keramat",
+    "director": "Janwar",
+    "release_year": 2023,
+    "is_available": true
+}
+
+###
+PUT http://localhost:3000/movies/2
+Content-Type: application/json
+
+{
+    "title": "Si Gundul Adv",
+    "director": "Joo",
+    "release_year": 2032,
+    "is_available": false
+}
+
+###
+DELETE http://localhost:3000/movies/4

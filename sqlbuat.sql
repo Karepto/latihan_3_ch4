@@ -6,5 +6,5 @@ CREATE Table movies (
     title VARCHAR(255),
     director VARCHAR(255),
     release_year INT,
-    is_available BOOLEAN
+    is_available BOOLEAN default true
 )

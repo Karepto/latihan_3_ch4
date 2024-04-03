@@ -1,0 +1,285 @@
+openapi: 3.0.1
+info:
+  title: Movie API
+  version: 1.0.0
+  description: This is a sample Movie API
+  contact:
+    email: rengga@mail.com
+
+servers:
+  - url: http://localhost:3000/v1
+
+paths:
+
+  /movies:
+    get:
+      summary: Get list of movies
+      description: Get list of movies
+      responses:
+        200:
+          description: A list of movies
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 1
+                        title:
+                          type: string
+                          example: Petualangan
+                        director:
+                          type: string
+                          example: Jono and brothers
+                        release_year:
+                          type: string
+                          example: 1999
+                        is_available:
+                          type: boolean
+                          example: true
+
+    post:
+      summary: Create a new movie
+      description: Create a new movie
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Petualangan
+                director:
+                  type: string
+                  example: Jono and brothers
+                release_year:
+                  type: string
+                  example: 1999
+                is_available:
+                  type: boolean
+                  example: true
+      responses:
+        201:
+          description: Movie created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 1
+                      title:
+                        type: string
+                        example: Petualangan
+                      director:
+                        type: string
+                        example: Jono and brothers
+                      release_year:
+                        type: string
+                        example: 1999
+                      is_available:
+                        type: boolean
+                        example: true
+
+        400:
+          description: Invalid request body
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: All fields are required
+
+  /movies/{id}:
+    get:
+      summary: Get a movie by ID
+      description: Get a movie by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            example: 1
+      responses:
+        200:
+          description: A movie
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 1
+                      title:
+                        type: string
+                        example: Petualangan
+                      director:
+                        type: string
+                        example: Jono and brothers
+                      release_year:
+                        type: string
+                        example: 1999
+                      is_available:
+                        type: boolean
+                        example: true
+
+        404:
+          description: Movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Movie with id 26 not found
+    
+    put:
+      summary: Update a movie
+      description: Update a movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  example: Petualangan
+                director:
+                  type: string
+                  example: Jono and brothers
+                release_year:
+                  type: string
+                  example: 1999
+                is_available:
+                  type: boolean
+                  example: true
+      responses:
+        200:
+          description: Movie updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 1
+                      title:
+                        type: string
+                        example: Petualangan
+        
+        404: 
+          description: Movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error
+                  message:
+                    type: string
+                    example: Movie with id 26 not found
+
+    delete:
+      summary: Delete a movie
+      description: Delete a movie
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            example: 1
+      responses:
+        200:
+          description: Movie deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 1
+                      title:
+                        type: string
+                        example: Petualangan
+                      director:
+                        type: string
+                        example: Jono and brothers
+                      release_year:
+                        type: string
+                        example: 1999
+                      is_available:
+                        type: boolean
+                        example: true
+
+        404:
+          description: Movie not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: error 
+                  message:
+                    type: string
+                    example: Movie with id 26 not found
+
